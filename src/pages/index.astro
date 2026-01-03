@@ -11,14 +11,15 @@ const links = (await getCollection("links")).sort(
 ---
 
 <BaseLayout title="da-yoshi-k">
-  <main class="max-w-xl mx-auto px-4 py-12">
+  <main class="max-w-xl mx-auto px-6 py-14">
     <ProfileHeader
-      name="da-yoshi-k"
+      name="よしだ"
+      handleName="@da-yoshi-k または @da_yoshi_k"
       bio="Webエンジニアで引き続き勉強を頑張っていく人"
       skills="Ruby on Rails / アジャイル / 雑食"
     />
 
-    <ul class="mt-8 space-y-4">
+    <ul class="mt-10 space-y-5">
       {
         links.map((link) => (
           <li>

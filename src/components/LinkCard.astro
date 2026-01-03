@@ -4,9 +4,17 @@ const {title, url, description} = Astro.props;
 
 <a
   href={url}
-  class="block rounded-xl bg-white p-4 shadow hover:shadow-md transition"
   target="_blank"
-  rel="noopener noreferrer">
-  <div class="font-semibold">{title}</div>
-  {description && <div class="text-sm text-gray-600 mt-1">{description}</div>}
+  rel="noopener noreferrer"
+  class="block rounded-2xl bg-white p-5
+    shadow-sm
+    hover:bg-zinc-50
+    active:bg-zinc-100
+    active:scale-[0.99]
+    transition">
+  <div class="text-base font-semibold">
+    {title}
+  </div>
+
+  {description && <div class="mt-1 text-sm text-zinc-600">{description}</div>}
 </a>

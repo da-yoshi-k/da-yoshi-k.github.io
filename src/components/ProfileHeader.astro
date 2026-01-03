@@ -1,9 +1,36 @@
 ---
-const {name, bio, skills} = Astro.props;
+const {name, handleName, bio, skills} = Astro.props;
 ---
 
-<header class="text-center">
-  <h1 class="text-3xl font-bold">{name}</h1>
-  <p class="mt-3 text-gray-700">{bio}</p>
-  <p class="mt-3 text-gray-700">{skills}</p>
+<header class="flex justify-center">
+  <div class="flex items-start gap-6">
+    <!-- Avatar -->
+    <img
+      src="/prof.png"
+      alt={`${name} avatar`}
+      class="w-20 h-20
+        rounded-full
+        object-cover
+        shrink-0"
+    />
+
+    <!-- Text block -->
+    <div class="text-left">
+      <h1 class="text-4xl font-bold tracking-tight">
+        {name}
+      </h1>
+
+      <p class="mt-1 text-sm text-zinc-500 whitespace-pre-line">
+        {handleName}
+      </p>
+
+      <p class="mt-4 text-base text-zinc-600 leading-relaxed">
+        {bio}
+      </p>
+
+      <p class="mt-2 text-sm text-zinc-500">
+        {skills}
+      </p>
+    </div>
+  </div>
 </header>
