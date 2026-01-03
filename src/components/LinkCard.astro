@@ -1,0 +1,12 @@
+---
+const {title, url, description} = Astro.props;
+---
+
+<a
+  href={url}
+  class="block rounded-xl bg-white p-4 shadow hover:shadow-md transition"
+  target="_blank"
+  rel="noopener noreferrer">
+  <div class="font-semibold">{title}</div>
+  {description && <div class="text-sm text-gray-600 mt-1">{description}</div>}
+</a>

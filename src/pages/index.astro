@@ -1,0 +1,35 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {getCollection} from "astro:content";
+import ProfileHeader from "../components/ProfileHeader.astro";
+import LinkCard from "../components/LinkCard.astro";
+
+const links = (await getCollection("links")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout title="da-yoshi-k">
+  <main class="max-w-xl mx-auto px-4 py-12">
+    <ProfileHeader
+      name="da-yoshi-k"
+      bio="Webエンジニアで引き続き勉強を頑張っていく人"
+      skills="Ruby on Rails / アジャイル / 雑食"
+    />
+
+    <ul class="mt-8 space-y-4">
+      {
+        links.map((link) => (
+          <li>
+            <LinkCard
+              title={link.data.title}
+              url={link.data.url}
+              description={link.data.description}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BaseLayout>
