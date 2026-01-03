@@ -1,5 +1,6 @@
 ---
-const {title, url, description} = Astro.props;
+import Icon from "./Icon.astro";
+const {title, url, description, faviconDomain} = Astro.props;
 ---
 
 <a
@@ -12,9 +13,26 @@ const {title, url, description} = Astro.props;
     active:bg-zinc-100
     active:scale-[0.99]
     transition">
-  <div class="text-base font-semibold">
-    {title}
-  </div>
+  <div class="flex items-start gap-3">
+    {
+      faviconDomain && (
+        <img
+          src={`https://www.google.com/s2/favicons?domain=${faviconDomain}&sz=64`}
+          alt=""
+          class="w-5 h-5 mt-1 rounded-sm"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        />
+      )
+    }
 
-  {description && <div class="mt-1 text-sm text-zinc-600">{description}</div>}
+    <div>
+      <div class="text-base font-semibold">{title}</div>
+      {
+        description && (
+          <div class="mt-1 text-sm text-zinc-600">{description}</div>
+        )
+      }
+    </div>
+  </div>
 </a>
