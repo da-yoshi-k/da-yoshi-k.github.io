@@ -3,16 +3,32 @@ const {title = "da-yoshi-k"} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="ja">
+<html
+  lang="ja"
+  class="bg-zinc-50 text-zinc-900
+    dark:bg-zinc-800 dark:text-zinc-200
+    transition-colors duration-500">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
 
     <link rel="icon" href="/prof.png" />
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        if (stored === "dark" || (!stored && prefersDark)) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <script src="/theme-toggle.js" defer is:inline></script>
   </head>
 
-  <body class="bg-zinc-50 text-zinc-900 antialiased">
+  <body class="antialiased">
     <slot />
   </body>
 </html>

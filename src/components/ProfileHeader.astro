@@ -4,6 +4,21 @@ const {name, handleName, bio, skills} = Astro.props;
 
 <header class="flex justify-center">
   <div class="flex items-start gap-6">
+    <!-- Toggle theme button -->
+    <button
+      id="theme-toggle"
+      onclick="toggleTheme()"
+      aria-label="Toggle theme"
+      class="fixed top-4 right-4 z-50
+    flex items-center justify-center
+    w-10 h-10 rounded-full
+    bg-white/80 dark:bg-zinc-700/80
+    text-zinc-700 dark:text-zinc-200
+    shadow-md backdrop-blur
+    hover:bg-white dark:hover:bg-zinc-600
+    active:scale-95
+    transition-all duration-200">
+    </button>
     <!-- Avatar -->
     <img
       src="/prof.png"
@@ -20,15 +35,17 @@ const {name, handleName, bio, skills} = Astro.props;
         {name}
       </h1>
 
-      <p class="mt-1 text-sm text-zinc-500 whitespace-pre-line">
+      <p
+        class="mt-1 text-sm text-zinc-500 dark:text-zinc-400 whitespace-pre-line">
         {handleName}
       </p>
 
-      <p class="mt-4 text-base text-zinc-600 leading-relaxed">
+      <p
+        class="mt-4 text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
         {bio}
       </p>
 
-      <p class="mt-2 text-sm text-zinc-500">
+      <p class="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
         {skills}
       </p>
     </div>

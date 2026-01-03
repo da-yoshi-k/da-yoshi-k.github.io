@@ -6,12 +6,13 @@ const {title, url, description, faviconDomain} = Astro.props;
   href={url}
   target="_blank"
   rel="noopener noreferrer"
-  class="block rounded-2xl bg-white p-5
-    shadow-sm
-    hover:bg-zinc-50
-    active:bg-zinc-100
-    active:scale-[0.99]
-    transition">
+  class="block rounded-2xl p-5
+  bg-white dark:bg-zinc-700
+  shadow-sm
+  hover:bg-zinc-50 dark:hover:bg-zinc-600
+  active:bg-zinc-100 dark:active:bg-zinc-500
+  active:scale-[0.99]
+  transition">
   <div class="flex items-start gap-3">
     {
       faviconDomain && (
@@ -29,7 +30,9 @@ const {title, url, description, faviconDomain} = Astro.props;
       <div class="text-base font-semibold">{title}</div>
       {
         description && (
-          <div class="mt-1 text-sm text-zinc-600">{description}</div>
+          <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            {description}
+          </div>
         )
       }
     </div>
