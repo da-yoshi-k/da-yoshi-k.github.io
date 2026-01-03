@@ -1,0 +1,40 @@
+---
+const {title, url, description, faviconDomain} = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="block rounded-2xl p-5
+  bg-white dark:bg-zinc-700
+  shadow-sm
+  hover:bg-zinc-50 dark:hover:bg-zinc-600
+  active:bg-zinc-100 dark:active:bg-zinc-500
+  active:scale-[0.99]
+  transition">
+  <div class="flex items-start gap-3">
+    {
+      faviconDomain && (
+        <img
+          src={`https://www.google.com/s2/favicons?domain=${faviconDomain}&sz=64`}
+          alt=""
+          class="w-5 h-5 mt-1 rounded-sm"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        />
+      )
+    }
+
+    <div>
+      <div class="text-base font-semibold">{title}</div>
+      {
+        description && (
+          <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            {description}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</a>
