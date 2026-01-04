@@ -21,9 +21,7 @@
 
     if (typeof window.gtag === "function") {
       window.gtag("event", "toggle_theme", {
-        theme: willBeDark ? "dark" : "light",
-        event_category: "ui",
-        event_label: "theme_toggle",
+        theme_mode: willBeDark ? "dark" : "light",
       });
     }
   };

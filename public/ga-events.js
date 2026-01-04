@@ -9,8 +9,8 @@
     if (!label) return;
 
     window.gtag("event", "external_click", {
-      event_category: "outbound",
-      event_label: label,
+      link_url: link.href,
+      link_type: label,
       transport_type: "beacon",
     });
   });
