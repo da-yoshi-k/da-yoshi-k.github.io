@@ -4,4 +4,5 @@ url: https://da-yoshi-k.hatenablog.com/
 description: 技術・思考・雑記ログ
 order: 3
 faviconDomain: hatenablog.com
+gaLabel: hatenablog
 ---

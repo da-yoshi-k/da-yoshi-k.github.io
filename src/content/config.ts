@@ -8,6 +8,7 @@ export const collections = {
       description: z.string().optional(),
       order: z.number(),
       faviconDomain: z.string().optional(),
+      gaLabel: z.string().optional(),
     }),
   }),
 };

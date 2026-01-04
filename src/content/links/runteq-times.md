@@ -4,4 +4,5 @@ url: https://chat.runteq.jp/runteq/channels/times_yoshida_kazuki
 description: RUNTEQ時代からの個人チャンネル
 order: 7
 faviconDomain: school.runteq.jp
+gaLabel: runteq-times
 ---
