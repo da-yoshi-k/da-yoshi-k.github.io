@@ -16,6 +16,15 @@
   updateIcon();
 
   window.toggleTheme = function () {
-    applyTheme(!root.classList.contains("dark"));
+    const willBeDark = !root.classList.contains("dark");
+    applyTheme(willBeDark);
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "toggle_theme", {
+        theme: willBeDark ? "dark" : "light",
+        event_category: "ui",
+        event_label: "theme_toggle",
+      });
+    }
   };
 })();
