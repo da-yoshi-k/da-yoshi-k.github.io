@@ -29,6 +29,9 @@ const links = (await getCollection("links")).sort(
               description={link.data.description}
               faviconDomain={link.data.faviconDomain}
               gaLabel={link.data.gaLabel}
+              actionLabel={link.data.actionLabel}
+              actionUrl={link.data.actionUrl}
+              actionGaLabel={link.data.actionGaLabel}
             />
           </li>
         ))
