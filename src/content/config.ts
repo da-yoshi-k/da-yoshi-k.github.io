@@ -9,6 +9,9 @@ export const collections = {
       order: z.number(),
       faviconDomain: z.string().optional(),
       gaLabel: z.string().optional(),
+      actionLabel: z.string().optional(),
+      actionUrl: z.string().url().optional(),
+      actionGaLabel: z.string().optional(),
     }),
   }),
 };
