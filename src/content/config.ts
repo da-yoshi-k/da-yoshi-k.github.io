@@ -4,7 +4,7 @@ export const collections = {
   links: defineCollection({
     schema: z.object({
       title: z.string(),
-      url: z.string().url(),
+      url: z.string().url().optional(),
       description: z.string().optional(),
       order: z.number(),
       faviconDomain: z.string().optional(),
