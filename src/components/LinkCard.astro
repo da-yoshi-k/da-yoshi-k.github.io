@@ -9,6 +9,8 @@ const {
   actionUrl,
   actionGaLabel,
 } = Astro.props;
+
+const hasUrl = Boolean(url);
 ---
 
 <div
@@ -33,21 +35,36 @@ const {
     }
 
     <div class="flex-1 min-w-0">
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-ga-label={gaLabel}
-        class="block">
-        <div class="text-base font-semibold">{title}</div>
-        {
-          description && (
-            <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              {description}
-            </div>
-          )
-        }
-      </a>
+      {
+        hasUrl ? (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ga-label={gaLabel}
+            class="block">
+            <div class="text-base font-semibold">{title}</div>
+            {
+              description && (
+                <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  {description}
+                </div>
+              )
+            }
+          </a>
+        ) : (
+          <div class="block">
+            <div class="text-base font-semibold">{title}</div>
+            {
+              description && (
+                <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  {description}
+                </div>
+              )
+            }
+          </div>
+        )
+      }
     </div>
 
     {
