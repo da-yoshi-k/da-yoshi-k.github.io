@@ -21,6 +21,7 @@ export const collections = {
       actionLabel: z.string().optional(),
       actionUrl: z.string().url().optional(),
       actionGaLabel: z.string().optional(),
+      feedType: z.enum(["articles", "github", "none"]).optional(),
     }),
   }),
 };

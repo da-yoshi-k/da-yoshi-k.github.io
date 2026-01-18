@@ -17,6 +17,19 @@ const profileData = profile?.data ?? {
   bio: "自己紹介文をここに記入してください",
   skills: "あなたのスキル / 興味のある技術 / etc",
 };
+
+// フィードデータを読み込む関数
+const loadFeedData = async (gaLabel: string | undefined, feedType: string | undefined) => {
+  if (!gaLabel || !feedType || feedType === "none") return null;
+  
+  try {
+    const feedModule = await import(`../data/feeds/${gaLabel}.json`);
+    return feedModule.default;
+  } catch (error) {
+    // ファイルが存在しない場合はnullを返す
+    return null;
+  }
+};
 ---
 
 <BaseLayout title="da-yoshi-k">
@@ -25,20 +38,25 @@ const profileData = profile?.data ?? {
 
     <ul class="mt-10 space-y-5">
       {
-        links.map((link) => (
-          <li>
-            <LinkCard
-              title={link.data.title}
-              url={link.data.url}
-              description={link.data.description}
-              faviconDomain={link.data.faviconDomain}
-              gaLabel={link.data.gaLabel}
-              actionLabel={link.data.actionLabel}
-              actionUrl={link.data.actionUrl}
-              actionGaLabel={link.data.actionGaLabel}
-            />
-          </li>
-        ))
+        await Promise.all(links.map(async (link) => {
+          const feedData = await loadFeedData(link.data.gaLabel, link.data.feedType);
+          return (
+            <li>
+              <LinkCard
+                title={link.data.title}
+                url={link.data.url}
+                description={link.data.description}
+                faviconDomain={link.data.faviconDomain}
+                gaLabel={link.data.gaLabel}
+                actionLabel={link.data.actionLabel}
+                actionUrl={link.data.actionUrl}
+                actionGaLabel={link.data.actionGaLabel}
+                feedType={link.data.feedType}
+                feedData={feedData}
+              />
+            </li>
+          );
+        }))
       }
     </ul>
   </main>

@@ -1,4 +1,7 @@
 ---
+import ArticleFeed from "./feeds/ArticleFeed.astro";
+import GitHubActivityFeed from "./feeds/GitHubActivityFeed.astro";
+
 const {
   title,
   url,
@@ -8,9 +11,13 @@ const {
   actionLabel,
   actionUrl,
   actionGaLabel,
+  feedType,
+  feedData,
 } = Astro.props;
 
 const hasUrl = Boolean(url);
+const hasFeed = Boolean(feedType && feedData);
+const uniqueId = gaLabel || title.toLowerCase().replace(/\s/g, "-");
 ---
 
 <div
@@ -44,44 +51,77 @@ const hasUrl = Boolean(url);
             data-ga-label={gaLabel}
             class="block">
             <div class="text-base font-semibold">{title}</div>
-            {
-              description && (
-                <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                  {description}
-                </div>
-              )
-            }
+            {description && (
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                {description}
+              </div>
+            )}
           </a>
         ) : (
           <div class="block">
             <div class="text-base font-semibold">{title}</div>
-            {
-              description && (
-                <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                  {description}
-                </div>
-              )
-            }
+            {description && (
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                {description}
+              </div>
+            )}
           </div>
         )
       }
     </div>
 
     {
-      actionUrl &&
-        actionLabel && (
-          <a
-            href={actionUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-ga-label={actionGaLabel}
-            class="shrink-0 inline-flex items-center rounded-full border border-zinc-200 dark:border-zinc-500
+      actionUrl && actionLabel && (
+        <a
+          href={actionUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ga-label={actionGaLabel}
+          class="shrink-0 inline-flex items-center rounded-full border border-zinc-200 dark:border-zinc-500
             px-3 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-100
             hover:bg-zinc-100 dark:hover:bg-zinc-600
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 dark:focus-visible:ring-zinc-300">
-            {actionLabel}
-          </a>
-        )
+          {actionLabel}
+        </a>
+      )
     }
   </div>
+
+  <!-- フィードエリア -->
+  {
+    hasFeed && (
+      <div class="mt-4">
+        <button
+          type="button"
+          data-feed-toggle={uniqueId}
+          class="feed-toggle-btn flex items-center gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition">
+          <span>最新の活動を見る</span>
+          <svg
+            class="feed-toggle-icon w-4 h-4 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+
+        <div
+          data-feed-content={uniqueId}
+          class="feed-content hidden"
+          style="overflow: hidden; max-height: 0; transition: max-height 0.3s ease;">
+          {feedType === "articles" && feedData.articles && (
+            <ArticleFeed articles={feedData.articles} />
+          )}
+          {feedType === "github" && feedData.username && (
+            <GitHubActivityFeed username={feedData.username} />
+          )}
+        </div>
+      </div>
+    )
+  }
 </div>
