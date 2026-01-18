@@ -21,6 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           content.classList.add("hidden");
         }, 300);
+
+        // GAイベント送信
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "collapse_feed", {
+            feed_id: targetId,
+            transport_type: "beacon",
+          });
+        }
       } else {
         // 開く
         content.classList.remove("hidden");
@@ -31,6 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
           content.classList.add("expanded");
           icon.style.transform = "rotate(180deg)";
         });
+
+        // GAイベント送信
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "expand_feed", {
+            feed_id: targetId,
+            transport_type: "beacon",
+          });
+        }
       }
     });
   });
