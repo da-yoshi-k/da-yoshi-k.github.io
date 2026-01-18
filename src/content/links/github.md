@@ -5,4 +5,5 @@ description: OSS / 個人開発
 faviconDomain: github.com
 order: 1
 gaLabel: github
+feedType: github
 ---

@@ -1,0 +1,41 @@
+---
+interface Article {
+  title: string;
+  url: string;
+  publishedAt: string;
+}
+
+interface Props {
+  articles: Article[];
+  feedId?: string;
+}
+
+const { articles, feedId } = Astro.props;
+---
+
+<div class="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-600">
+  <h3 class="text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2">
+    📝 最新の記事
+  </h3>
+  <ul class="space-y-2">
+    {
+      articles.map((article) => (
+        <li>
+          <a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ga-label={feedId ? `${feedId}_article` : undefined}
+            class="block p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-600 transition">
+            <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100 line-clamp-2">
+              {article.title}
+            </div>
+            <div class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+              {new Date(article.publishedAt).toLocaleDateString("ja-JP")}
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

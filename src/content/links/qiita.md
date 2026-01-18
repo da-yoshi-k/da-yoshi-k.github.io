@@ -5,4 +5,5 @@ description: 技術記事まとめ
 order: 4
 faviconDomain: qiita.com
 gaLabel: qiita
+feedType: articles
 ---
