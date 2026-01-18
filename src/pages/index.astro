@@ -1,23 +1,27 @@
 ---
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import {getCollection} from "astro:content";
+import {getCollection, getEntry} from "astro:content";
 import ProfileHeader from "../components/ProfileHeader.astro";
 import LinkCard from "../components/LinkCard.astro";
 
 const links = (await getCollection("links")).sort(
   (a, b) => a.data.order - b.data.order
 );
+const profile = await getEntry("profile", "index");
+
+// フォールバック用のデフォルト値
+const profileData = profile?.data ?? {
+  name: "Your Name",
+  handleName: "@your-handle",
+  bio: "自己紹介文をここに記入してください",
+  skills: "あなたのスキル / 興味のある技術 / etc",
+};
 ---
 
 <BaseLayout title="da-yoshi-k">
   <main class="max-w-xl mx-auto px-6 py-14">
-    <ProfileHeader
-      name="よしだ"
-      handleName="@da-yoshi-k または @da_yoshi_k"
-      bio="Webエンジニアで引き続き勉強を頑張っていく人"
-      skills="Ruby on Rails / アジャイル / 雑食"
-    />
+    <ProfileHeader {...profileData} />
 
     <ul class="mt-10 space-y-5">
       {
