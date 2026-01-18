@@ -115,7 +115,7 @@ const uniqueId = gaLabel || title.toLowerCase().replace(/\s/g, "-");
           class="feed-content hidden"
           style="overflow: hidden; max-height: 0; transition: max-height 0.3s ease;">
           {feedType === "articles" && feedData.articles && (
-            <ArticleFeed articles={feedData.articles} />
+            <ArticleFeed articles={feedData.articles} feedId={gaLabel} />
           )}
           {feedType === "github" && feedData.username && (
             <GitHubActivityFeed username={feedData.username} />

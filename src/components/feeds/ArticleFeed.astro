@@ -7,9 +7,10 @@ interface Article {
 
 interface Props {
   articles: Article[];
+  feedId?: string;
 }
 
-const { articles } = Astro.props;
+const { articles, feedId } = Astro.props;
 ---
 
 <div class="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-600">
@@ -24,6 +25,7 @@ const { articles } = Astro.props;
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
+            data-ga-label={feedId ? `${feedId}_article` : undefined}
             class="block p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-600 transition">
             <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100 line-clamp-2">
               {article.title}
